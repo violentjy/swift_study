@@ -12,35 +12,20 @@ import Foundation
 // 기본 값 추출 -> 중위 연산자 <>
 // 강제 추출 -> 후위 연산자 >>
 
+/**
 prefix operator ~
 
-prefix func ~<Wrapped>(optional: CustomOptional<Wrapped>) -> Wrapped? {
-    switch (optional) {
-    case .none:
-        return nil
-    case let .some(value):
-        return value
-    }
-}
+prefix func ~
+*/
 
+/**
 postfix operator >>
 
-postfix func >><Wrapped>(optional: CustomOptional<Wrapped>) throws -> Wrapped {
-    switch (optional) {
-    case .none:
-        throw CustomOptionalError.accessNil
-    case let .some(wrappedValue):
-        return wrappedValue
-    }
-}
+postfix func >>
+*/
 
+/**
 infix operator <>: NilCoalescingPrecedence
 
-func <><Wrapped>(optional: CustomOptional<Wrapped>, defaultValue: Wrapped) -> Wrapped {
-    switch(optional) {
-    case .none:
-        return defaultValue
-    case let .some(value):
-        return value
-    }
-}
+func <>
+*/

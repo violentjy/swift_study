@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum CustomOptional<Wrapped: Equatable>: ExpressibleByNilLiteral, Equatable {
+public enum CustomOptional<Wrapped> {
     case none
     case some(Wrapped)
     
@@ -16,18 +16,7 @@ public enum CustomOptional<Wrapped: Equatable>: ExpressibleByNilLiteral, Equatab
         self = .some(value)
     }
     
-    public init(nilLiteral: ()) {
-        self = .none
-    }
-    
-    public static func == (lhs: CustomOptional<Wrapped>, rhs: CustomOptional<Wrapped>) -> Bool {
-        switch (lhs, rhs) {
-        case (.none, .none):
-            return true
-        case let (.some(lValue), .some(rValue)):
-            return lValue == rValue
-        default:
-            return false
-        }
-    }
+    /**
+ 필요한 것 구현하기!
+     */
 }

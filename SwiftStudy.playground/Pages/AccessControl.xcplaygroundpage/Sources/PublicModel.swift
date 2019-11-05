@@ -1,7 +1,9 @@
 import Foundation
 
 public class PublicModel {
-    public init() {}
+    public init() {
+        print("initialize PublicModel")
+    }
     
     private func privateFunction() {
         print("This is private function")

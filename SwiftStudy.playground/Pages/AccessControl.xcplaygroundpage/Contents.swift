@@ -12,6 +12,14 @@ let publicModel = PublicModel()
 //publicModel.internalFunction()
 publicModel.publicFunction()
 
+//class InheritPublicModel: PublicModel { // Error
+//
+//}
+
+class InheritOpenModel: OpenModel {
+    
+}
+
 private class PrivateTestModel {
     init() {
         print("initialize PrivateTestModel")
@@ -26,7 +34,7 @@ private class PrivateTestModel {
     }
 }
 
-//let internalTest = PrivateTest() // Error (PrivateTest 가 private 인데 privateTest 변수는 internal 이라)
+//let internalTest = PrivateTestModel() // Error (PrivateTest 가 private 인데 privateTest 변수는 internal 이라)
 fileprivate let fileprivateTest = PrivateTestModel() // 가능
 private let privateTest = PrivateTestModel() // 가능
 //private let privateTest2 = PrivateTestModel(2) // Error! private initialize 접근 불가
@@ -44,6 +52,8 @@ private func makePrivateTestModel() -> PrivateTestModel {
     return PrivateTestModel()
 }
 
+makePrivateTestModel()
+
 //let internalTuple = (PrivateTestModel(), PublicModel()) // Error!
 fileprivate let fileprivateTuple = (PrivateTestModel(), PublicModel())
 private let privateTuple = (PrivateTestModel(), PublicModel())
@@ -53,6 +63,10 @@ private let privateTuple = (PrivateTestModel(), PublicModel())
 /* private vs fileprivate */
 class TestA {
     private var value = 0
+    
+    init() {
+        print("initialize TestA")
+    }
     
     fileprivate func changeValue(_ value: Int) {
         print("value change! \(self.value) -> \(value)")
@@ -72,4 +86,21 @@ let testA = TestA()
 //testA.valueUp() // Error! - private 요소 접근 불가
 testA.changeValue(5) // 가능 - fileprivate 요소 접근 가능 (같은 파일)
 
-//: [Next](@next)
+class TestB {
+    public private(set) var value: Int
+    
+    init(_ value: Int) {
+        self.value = value
+    }
+    
+    func valueUp() {
+        value += 1
+    }
+}
+
+let testB = TestB(0)
+
+print("value: \(testB.value)")
+//testB.value = 2
+testB.valueUp()
+print("value: \(testB.value)")

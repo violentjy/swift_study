@@ -5,6 +5,5 @@
         <page name='CustomOperator1'/>
         <page name='CustomOperator2'/>
         <page name='CustomOperator3'/>
-        <page name='AccessControl'/>
     </pages>
 </playground>
